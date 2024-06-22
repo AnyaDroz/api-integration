@@ -1,4 +1,4 @@
-import { useState } from "react"
+import {useEffect, useState } from "react"
 import styles from "./GithubApi.module.css"
 import axios from "axios";
 import RepoDetails from "./RepoDetails";
@@ -13,7 +13,13 @@ const GithubApi=()=> {
     const [repos, setRepos] =useState([])
     const [details, setDetails] = useState<Detail>()
     const [detailsLoading, setDetailsLoading] = useState(false)
-const handleSubmit = (event: any) => {
+
+    useEffect(()=> {
+        setRepos([])
+        setDetails(undefined);
+    }, [username])
+
+    const handleSubmit = (event: any) => {
         event.preventDefault();
         searchRepos()
 }
